@@ -1,0 +1,21 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: memory-eating
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: chaos
+    spec:
+      containers:
+      - name: node
+        image: solsson/node:8
+        ports:
+        - containerPort: 80
+        command:
+        - /bin/bash
+        - -c
+        - >
+          tail -f /dev/null
